@@ -11,19 +11,21 @@ if (isPost()) {
         $pass = $filterAll['pass'];
 
         // Truy vấn thông tin user từ cơ sở dữ liệu
-        $userQuery = oneRaw("SELECT pass FROM users WHERE user ='$user'");
+        $userQuery = oneRaw("SELECT pass,role FROM users WHERE user ='$user'");
 
         if ($userQuery) {
             // So sánh mật khẩu nhập vào với mật khẩu từ cơ sở dữ liệu
             if ($pass === $userQuery['pass']) {
                 // Kiểm tra quyền truy cập
-                if ($user === 'admin') {
+                $role = $userQuery['role']; // Lấy giá trị role từ kết quả truy vấn
+
+                if ($role === 'admin') {
                     // Nếu là admin, chuyển hướng đến trang dashboard_admin
                     redirect('?module=home&&action=dashboard');
                 } else {
                     // Nếu không phải admin, chuyển hướng đến trang dashboard_user
                     redirect('?module=home&&action=dashboard_user');
-                }
+                } 
             } else {
                 // Nếu mật khẩu sai, hiển thị thông báo lỗi
                 setFlashData('msg', 'Mật khẩu không chính xác');
