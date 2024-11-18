@@ -1,23 +1,29 @@
 <?php
-if(!defined('_CODE')){
+if (!defined('_CODE')) {
     die('Access denied...');
- }
-    layouts('header');
+}
+layouts('header');
 
 if (isPost()) {
     $filterAll = filter();
     if (!empty(trim($filterAll['user'])) && !empty(trim($filterAll['pass']))) {
-        // kiểm tra đăng nhập
         $user = $filterAll['user'];
-        $pass = $filterAll['pass'];     
-        // truy vấn lấy thông tin users theo 
-        $userQuery = oneRaw("SELECT pass FROM users WHERE user ='$user'");   
-        
+        $pass = $filterAll['pass'];
+
+        // Truy vấn thông tin user từ cơ sở dữ liệu
+        $userQuery = oneRaw("SELECT pass FROM users WHERE user ='$user'");
+
         if ($userQuery) {
             // So sánh mật khẩu nhập vào với mật khẩu từ cơ sở dữ liệu
             if ($pass === $userQuery['pass']) {
-                // Nếu mật khẩu đúng, chuyển hướng đến trang dashboard
-                redirect('?module=home&&action=dashboard');
+                // Kiểm tra quyền truy cập
+                if ($user === 'admin') {
+                    // Nếu là admin, chuyển hướng đến trang dashboard_admin
+                    redirect('?module=home&&action=dashboard');
+                } else {
+                    // Nếu không phải admin, chuyển hướng đến trang dashboard_user
+                    redirect('?module=home&&action=dashboard_user');
+                }
             } else {
                 // Nếu mật khẩu sai, hiển thị thông báo lỗi
                 setFlashData('msg', 'Mật khẩu không chính xác');
@@ -38,30 +44,30 @@ if (isPost()) {
 }
 
 $msg = getFlashData('msg');
-$msg_type =getFlashData('msg_type');
+$msg_type = getFlashData('msg_type');
 
 ?>
 <div class="row">
     <div class="col-4" style="margin: 50px auto;">
         <h2 class="text-center text-uppercase">Quản lý nhân viên</h2>
         <?php
-        if(!empty($msg)){
-            getMsg($msg,$msg_type);
+        if (!empty($msg)) {
+            getMsg($msg, $msg_type);
         }
         ?>
         <form action="" method="post">
-        <div class="form-group mg-form"> 
-            <label for="">User</label>
-            <input name="user" type="user" class="form-control" placeholder="Tài khoản">
-        </div>
-        <div class="form-group mg-fomt"> 
-            <label for="">Password</label>
-            <input name="pass" type="pass" class="form-control" placeholder="Mật khẩu">
-        </div>
-        <button type="submit" class="mg-btm btn btn-primary btn-block">Đăng Nhập</button>
-        </form>    
+            <div class="form-group mg-form">
+                <label for="">User</label>
+                <input name="user" type="user" class="form-control" placeholder="Tài khoản">
+            </div>
+            <div class="form-group mg-fomt">
+                <label for="">Password</label>
+                <input name="pass" type="pass" class="form-control" placeholder="Mật khẩu">
+            </div>
+            <button type="submit" class="mg-btm btn btn-primary btn-block">Đăng Nhập</button>
+        </form>
     </div>
 </div>
 <?php
-        layouts('footer');
+layouts('footer');
 ?>

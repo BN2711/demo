@@ -86,7 +86,7 @@ button {
   padding-top: 15px;
   background: var(--primary-color);
   list-style-type: none;
-  margin: 0;
+  margin-left: -10px;
   padding-left: 0;
 }
 

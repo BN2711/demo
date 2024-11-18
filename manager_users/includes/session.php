@@ -21,7 +21,7 @@ function getSession($key=''){
 // Hàm xóa session
 function removeSession($key=''){
     if(empty($key)){
-        session_destroy;
+        session_destroy();
         return true;
     }else{
         if(isset($_SESSION[$key])){
