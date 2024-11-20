@@ -4,219 +4,242 @@
 .mg-btm{
     margin-top: 20px;
 }
+
+:root {
+  --main-bg-color: #5959ed;
+  --sub-bg-color: #ffffff;
+  --top-height: 70px;
+  --main-transition: all 0.3s ease;
+  --primary-color-light: #F6F5FF;
+}
+
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-html {
-  font-size: 62.5%;
+.admin-sidebar {
+  height: 100%;
+  background-color: var(--main-bg-color);
+  width: 250px; /* Chiều rộng mặc định của sidebar */
+  transition: width 0.3s ease; /* Hiệu ứng thu gọn */
 }
 
-body {
-  font-size: 1.6rem;
-  font-family: "Roboto", serif;
+.admin-sidebar.collapsed {
+  width: 60px; /* Chiều rộng khi sidebar thu gọn */
 }
 
-/* common */
-:root {
-  --primary-color: #3a428c;
+.admin-sidebar-content li .i {
+  font-size: 15px;
+  margin-right: 10px;
 }
 
 a {
+  color: #f0f2ff;
+  font-size: 15px;
+}
+
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   text-decoration: none;
 }
 
-input,
-textarea,
-select,
-button {
-  font-size: inherit;
-  font-family: inherit;
+.row-grid {
+  display: grid;
 }
 
-.main-content {
-  margin-top: 20px;
+.admin .row-grid {
+  grid-template-columns: 20% 80%;
 }
 
-.btn {
-  display: inline-block;
-  border: none;
-  color: #fff;
-  font-size: 1.6rem;
-  padding: 10px 20px;
-  border-radius: 5px;
-  transition: all 0.3s;
-  background-color: var(--primary-color);
+.admin-sidebar-top {
+  text-align: center; /* Căn giữa */
+  margin-bottom: 20px; /* Khoảng cách với nội dung bên dưới */
+  border-bottom: 1px solid #ffffff;
 }
 
-.control__btn {
-  margin-top: 5px;
+.admin-sidebar-top img {
+  padding-top: 1px;
+  width: 100%;
 }
 
-.btn:hover {
-  opacity: 0.8;
+.admin-sidebar-content ul {
+  position: relative;
+  left: 0;
+  margin: 0;
+  top: 0;
+  width: 100%;
+}
+
+.admin-sidebar-content ul li a i {
+  font-size: 15px;
+  padding: 1px;
+  position: relative;
+  display: block;
+  min-width: 40px;
+  height: 60px;
+}
+
+.admin-sidebar-content ul li a {
+  font-size: 15px;
+  display: flex;
+  width: 100%;
+  text-decoration: none;
+  color: #f0f2ff;
+}
+
+.admin-sidebar-content {
+  padding: 20px 0 0 20px;
+  color: #7d8cf1;
+}
+
+.sub-menu {
+  display: none;
+}
+
+.sub-menu.active {
+  display: block;
+}
+
+.sub-menu li:hover a {
+  color: #0a1195;
+}
+
+.admin-content {
+  background-color: var(--sub-bg-color);
+}
+
+.admin-content-top {
+  display: flex;
+  justify-content: space-between;
+  height: var(--top-height);
+  border-bottom: 1px solid #0a28ed;
+}
+
+.admin-content-top-left ul {
+  display: flex;
+  height: 80px;
+  align-items: center;
+  padding: 5px 30px;
+}
+
+.admin-content-top-right ul {
+  display: flex;
+  height: 80px;
+  align-items: center;
+  padding: 15px 55px;
+}
+
+.admin-content-top i {
+  margin-right: 12px;
   cursor: pointer;
 }
 
-/* Grid System */
-.grid__row {
-  width: 100%;
-  margin: 0 -7.5px;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.grid__col-2 {
-  padding: 0 7.5px;
-  width: 16.667%;
-}
-
-.grid__col-10 {
-  padding: 0 7.5px;
-  width: 83.334%;
-}
-
-.container {
-  padding: 0 15px;
-}
-
-/* Sidebar */
-.sidebar {
-  height: 100vh;
-  padding-top: 15px;
-  background: var(--primary-color);
-  list-style-type: none;
-  margin-left: -10px;
-  padding-left: 0;
-}
-
-.sidebar-item {
-  display: block;
-  width: 100%;
+.admin-content-top-right ul li:first-child i {
   position: relative;
 }
 
-.sidebar-link {
+.admin-content-top-right ul li:first-child i::after {
+  position: absolute;
+  content: attr(number);
+  height: 20px;
+  width: 20px;
   display: flex;
-  align-items: center;
+  background-color: #4a87ce;
+  border-radius: 50%;
+  top: -12px;
+  right: -12px;
   color: #fff;
-  font-weight: 500;
-  font-size: 1.6rem;
-  padding: 12px 15px;
-  width: 100%;
-  transition: opacity 0.3s;
-}
-
-.sidebar-item:hover > .sidebar-link {
-  opacity: 0.8;
-}
-
-.sidebar__icon {
-  font-size: 1.3rem;
-  margin-right: 4px;
-}
-
-.sidebar__icon-down {
-  margin-left: 6px;
-}
-
-/* Submenu */
-.subnav {
-  display: none;
-  width: 100%;
-}
-
-.sidebar-item:hover .subnav {
-  display: block;
-}
-
-.subnav-item {
-  padding: 5px 0 5px 30px;
-}
-
-.subnav-item:hover {
-  opacity: 0.8;
-}
-
-.subnav-link {
-  color: #fff;
-  font-size: 1.4rem;
-  font-weight: 500;
-  display: block;
-}
-
-.subnav__icon {
-  font-size: 1rem;
-  margin-right: 4px;
-}
-
-/* header */
-.header {
-  font-size: 2.5rem;
-  padding: 5px 0 5px;
-  border-bottom: 4px solid var(--primary-color);
-}
-
-/* form */
-.form__group {
-  margin-bottom: 10px;
-}
-
-.form__label {
-  font-size: 1.6rem;
-  font-weight: 500;
-}
-
-.form__input {
-  display: block;
-  width: 100%;
-  margin-top: 5px;
-  padding: 5px 10px;
-}
-
-
-/* Table */
-.table {
-  width: 100%;
-}
-
-.table__header,
-.table__data {
-  font-size: 2rem;
-  border: 1px solid #ddd;
-  padding: 10px;
   text-align: center;
+  justify-content: center;
+  align-items: center;
+  animation: notification;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-delay: 0.5s;
 }
 
-.table__header {
-  background-color: #3498db;
+.admin-content-top-right ul li:nth-child(2) i {
+  position: relative;
+}
+
+.admin-content-top-right ul li:nth-child(2) i::after {
+  position: absolute;
+  content: attr(number);
+  height: 20px;
+  width: 20px;
+  display: flex;
+  background-color: #ff0059;
+  border-radius: 50%;
+  top: -12px;
+  right: -12px;
   color: #fff;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  animation: notification;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-delay: 0.5s;
 }
 
-.table__action {
-  color: #3498db;
-  margin: 0 5px;
+@keyframes notification {
+  0% {
+      opacity: 0;
+  }
+
+  100% {
+      opacity: 1;
+  }
 }
-.grid__row {
-  display: flex; /* Dùng flexbox để chia cột */
-  width: 100%;
+
+body {
+  background-color: #f0f2f5;
   margin: 0;
+  padding: 0;
 }
 
-/* Sidebar sẽ chiếm 2 phần của 11, khoảng 18% chiều rộng */
-.grid__col-2 {
-  width: 18%; /* Sidebar có chiều rộng cố định */
-  padding: 0 10px; /* Thêm chút padding */
+.container {
+  width: 50%;
+  border-radius: 1px;
+  padding: 1px;
+  margin: 0 auto;
+  background-color: white;
 }
 
-/* Content sẽ chiếm phần còn lại */
-.grid__col-9 {
-  width: 82%; /* Content chiếm phần còn lại */
-  padding: 0 10px; /* Thêm chút padding */
+h2 {
+  text-align: center;
+  color: #4CAF50;
 }
 
-/* Bảng chiếm 100% chiều rộng của cột */
-.table {
+form {
+  display: grid;
+  gap: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select {
   width: 100%;
-  table-layout: auto; /* Cho phép bảng tự động điều chỉnh */
+  padding: 5px;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
 }
