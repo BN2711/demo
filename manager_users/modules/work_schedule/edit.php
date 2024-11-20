@@ -30,7 +30,7 @@ if (isset($_POST['sbm'])) {
 
     if ($stmt->execute([$work_date, $day_of_week, $start_time, $end_time, $employee_id])) {
         // Optionally, redirect after success
-        header("Location: ?module=work_schedule&action=list"); // Change to your desired page
+        header("Location: ?module=work_schedule&&action=list"); // Change to your desired page
         exit;
     } else {
         echo "Cập nhật thông tin không thành công.";
@@ -40,7 +40,7 @@ if (isset($_POST['sbm'])) {
 <div class="container">
     <hr>
     <h2>Danh sách ca làm việc </h2>
-    <a class="btn btn-primary" href="?module=work_schedule&action=add">Thêm ca làm việc</a>
+    <a class="btn btn-primary" href="?module=work_schedule&&action=add">Thêm ca làm việc</a>
     <table class="table custom-table">
         <thead>
             <tr>
@@ -124,7 +124,4 @@ function showEditForm(employee_id, work_date, day_of_week, start_time, end_time)
     document.getElementById('edit_end_time').value = end_time;
 }
 </script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
