@@ -16,8 +16,7 @@ if (isset($_POST['sbm'])) {
     $query = $conn->query($sql); 
 
         // Chuyển hướng về trang danh sách nhân viên
-        header('location:?module=work_schedule&action=list');
-     
+        redirect('?module=work_schedule&&action=list');
 }
 ?>
 <div class="container">
@@ -62,6 +61,6 @@ if (isset($_POST['sbm'])) {
             <input type="time" class="form-control" id="end_time" name="end_time" required>
         </div>
         <button name="sbm" type="submit" class="btn-primary">Thêm ca làm việc</button>
-        <a href="?module=work_schedule&action=list" class="btn btn-secondary">Quay lại</a>
+        <a href="?module=work_schedule&&action=list" class="btn btn-secondary">Quay lại</a>
     </form>
 </div>
