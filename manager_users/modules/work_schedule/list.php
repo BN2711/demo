@@ -1,3 +1,6 @@
+<?php 
+    layouts('header');
+?>
 <?php
 $sql = "
     SELECT 
@@ -30,77 +33,15 @@ if (isset($_POST['sbm'])) {
 
     if ($stmt->execute([$work_date, $day_of_week, $start_time, $end_time, $employee_id])) {
         // Optionally, redirect after success
-        header("Location: index.php?page_layout=list"); // Change to your desired page
+        header("Location: ?module=work_schedule&action=list"); // Change to your desired page
         exit;
     } else {
         echo "Cập nhật thông tin không thành công.";
     }
 }
-
-?>
-<?php 
-    layouts('header');
 ?>
 
-    <div class="grid__row">
-        <!-- Sidebar -->
-        <div class="grid__col-2">
-            <aside class="sidebar">
-                <ul class="sidebar-nav">
-                    <li class="sidebar-item">
-                        <a href="" class="sidebar-link">
-                            <i class="fa-solid fa-house sidebar__icon"></i>
-                            Trang chủ
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="" class="sidebar-link">
-                            <i class="fa-solid fa-money-bill sidebar__icon"></i>
-                            Lương
-                            <i class="fa-solid fa-caret-down sidebar__icon-down"></i>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="" class="sidebar-link">
-                            <i class="fa-solid fa-users sidebar__icon"></i>
-                            Bảng châm công
-                            <i class="fa-solid fa-caret-down sidebar__icon-down"></i>
-                        </a>
-                        <ul class="subnav">
-                            <li class="subnav-item">
-                                <a href="?module=work_schedule&&action=list" class="subnav-link">
-                                    <i class="fa-solid fa-circle subnav__icon"></i>
-                                    Danh sách ca làm việc
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="" class="sidebar-link">
-                            <i class="fa-solid fa-user sidebar__icon"></i>
-                            Nhân viên
-                            <i class="fa-solid fa-caret-down sidebar__icon-down"></i>
-                        </a>
-                        <ul class="subnav">
-                            <li class="subnav-item">
-                                <a href="?module=employees&&action=list" class="subnav-link">
-                                    <i class="fa-solid fa-circle subnav__icon"></i>
-                                    Danh sách nhân viên
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="" class="sidebar-link">
-                            <i class="fa-solid fa-star sidebar__icon"></i>
-                            Logout
-                        </a>
-                    </li>
-                </ul>
-            </aside>
-        </div>
-
-<div class="grid__col-9">
+<div class="container">
     <hr>
     <h2>Danh sách ca làm việc </h2>
     <a class="btn btn-primary" href="?module=work_schedule&&action=add">Thêm ca làm việc</a>
@@ -131,11 +72,12 @@ if (isset($_POST['sbm'])) {
                     <td><?php echo $row['start_time']; ?></td>
                     <td><?php echo $row['end_time']; ?></td>
                     <td>
-                        <a href="?module=work_schedule&action=list&schedule_id=<?php echo $row['employee_id']; ?>" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa ca làm việc của nhân viên này?');">Delete</a>
+                        <a href="?module=work_schedule&&action=delete&employee_id=<?php echo $row['employee_id']; ?>" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa ca làm việc của nhân viên này?');">Delete</a>
                     </td>
                     <td>
-                        <a href="?module=work_schedule&action=list&schedule_id=" class="btn btn-warning" data-toggle="modal" data-target="#editModal" onclick="showEditForm(<?php echo $row['employee_id']; ?>, '<?php echo $row['work_date']; ?>', '<?php echo $row['day_of_week']; ?>', '<?php echo $row['start_time']; ?>', '<?php echo $row['end_time']; ?>')">Edit</a>
+                        <a href="?module=work_schedule&action=edit&employee_id" class="btn btn-warning" data-toggle="modal" data-target="#editModal" onclick="showEditForm(<?php echo $row['employee_id']; ?>, '<?php echo $row['work_date']; ?>', '<?php echo $row['day_of_week']; ?>', '<?php echo $row['start_time']; ?>', '<?php echo $row['end_time']; ?>')">Edit</a>
                     </td>
+        
                 </tr>
             <?php } ?>
         </tbody>
@@ -195,8 +137,3 @@ function showEditForm(employee_id, work_date, day_of_week, start_time, end_time)
     document.getElementById('edit_start_time').value = start_time;
     document.getElementById('edit_end_time').value = end_time;
 }
-</script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
