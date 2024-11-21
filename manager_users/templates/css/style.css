@@ -1,8 +1,8 @@
-.mg-form{
-    margin-bottom: 10px;
+.mg-form {
+  margin-bottom: 10px;
 }
-.mg-btm{
-    margin-top: 20px;
+.mg-btm {
+  margin-top: 20px;
 }
 
 :root {
@@ -10,7 +10,7 @@
   --sub-bg-color: #ffffff;
   --top-height: 70px;
   --main-transition: all 0.3s ease;
-  --primary-color-light: #F6F5FF;
+  --primary-color-light: #f6f5ff;
 }
 
 * {
@@ -188,11 +188,11 @@ li {
 
 @keyframes notification {
   0% {
-      opacity: 0;
+    opacity: 0;
   }
 
   100% {
-      opacity: 1;
+    opacity: 1;
   }
 }
 
@@ -205,14 +205,15 @@ body {
 .container {
   width: 50%;
   border-radius: 1px;
-  padding: 1px;
+  padding: 20px;
   margin: 0 auto;
-  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
 h2 {
   text-align: center;
-  color: #4CAF50;
+  color: #4caf50;
 }
 
 form {
@@ -233,7 +234,7 @@ select {
 
 button {
   padding: 10px 20px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;
@@ -242,4 +243,10 @@ button {
 
 button:hover {
   background-color: #45a049;
+}
+
+/* form */
+.form-label {
+  margin-bottom: 5px;
+  font-weight: bold;
 }

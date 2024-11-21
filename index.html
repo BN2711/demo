@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm Ca Làm Việc</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, button {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .back-link a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Thêm Ca Làm Việc</h1>
+        <form>
+            <label for="employee">Mã nhân viên:</label>
+            <select id="employee" name="employee">
+                <option>Chọn nhân viên</option>
+            </select>
+
+            <label for="work-date">Ngày làm việc:</label>
+            <input type="date" id="work-date" name="work-date">
+
+            <label for="day">Thứ:</label>
+            <select id="day" name="day">
+                <option>Chọn thứ</option>
+            </select>
+
+            <label for="start-time">Thời gian bắt đầu:</label>
+            <input type="time" id="start-time" name="start-time">
+
+            <label for="end-time">Thời gian kết thúc:</label>
+            <input type="time" id="end-time" name="end-time">
+
+            <button type="submit">Thêm ca làm việc</button>
+        </form>
+        <div class="back-link">
+            <a href="#">Quay lại</a>
+        </div>
+    </div>
+</body>
+</html>
