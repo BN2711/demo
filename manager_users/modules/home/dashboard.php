@@ -26,7 +26,7 @@ require_once( _WEB_PATH_TEMPLATES.'/layout/header.php');
                         <ul class="sub-menu">
                             <li><a href="?module=work_schedule&&action=add"><i class="ri-arrow-drop-right-fill"></i>Tạo danh sách đăng kí ca làm việc</a></li>
                             <li><a href="?module=work_schedule&&action=list"><i class="ri-arrow-drop-right-fill"></i>Danh sách ca làm việc</a></li>
-                            <li><a href=""><i class="ri-arrow-drop-right-fill"></i>Bảng chấm công làm việc</a></li>
+                          
                         </ul>
                     </li>
                     <li><a href=""><i class="ri-wallet-3-line"></i> Quản lí lương<i class="ri-arrow-left-s-fill"></i></a>
