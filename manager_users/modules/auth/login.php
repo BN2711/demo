@@ -3,7 +3,9 @@ if (!defined('_CODE')) {
     die('Access denied...');
 }
 layouts('header');
-
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if (isPost()) {
     $filterAll = filter();
     if (!empty(trim($filterAll['user'])) && !empty(trim($filterAll['pass']))) {
@@ -11,20 +13,23 @@ if (isPost()) {
         $pass = $filterAll['pass'];
 
         // Truy vấn thông tin user từ cơ sở dữ liệu
-        $userQuery = oneRaw("SELECT pass,role FROM users WHERE user ='$user'");
+        $userQuery = oneRaw("SELECT user_id, pass, role FROM users WHERE user = '$user'");
 
         if ($userQuery) {
             // So sánh mật khẩu nhập vào với mật khẩu từ cơ sở dữ liệu
             if ($pass === $userQuery['pass']) {
                 // Kiểm tra quyền truy cập
                 $role = $userQuery['role']; // Lấy giá trị role từ kết quả truy vấn
-
+                $_SESSION['user_id'] = $userQuery['user_id']; 
+                $_SESSION['role'] = $userQuery['role'];  
                 if ($role === 'admin') {
                     // Nếu là admin, chuyển hướng đến trang dashboard_admin
-                    redirect('?module=home&&action=dashboard');
+                    header('Location: ?module=home&action=dashboard');
+                    exit;
                 } else {
                     // Nếu không phải admin, chuyển hướng đến trang dashboard_user
-                    redirect('?module=home&&action=dashboard_user');
+                    header('Location: ?module=home&action=dashboard_user');
+                    exit;
                 } 
             } else {
                 // Nếu mật khẩu sai, hiển thị thông báo lỗi
