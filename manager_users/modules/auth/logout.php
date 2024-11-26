@@ -1,8 +1,8 @@
 <?php
-if(!defined('_CODE')){
+if (!defined('_CODE')) {
     die('Access denied...');
 }
-<?php
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -13,4 +13,3 @@ session_destroy(); // Hủy session
 
 // Chuyển hướng về trang đăng nhập hoặc trang khác
 redirect('?module=auth&&action=login');
-?>

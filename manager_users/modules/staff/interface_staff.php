@@ -53,13 +53,7 @@ if (isset($_SESSION['user_id'])) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Quản lý nhân sự</title>
-</head>
+
 <body>
     <section class="admin">
         <div class="row-grid">
@@ -114,12 +108,9 @@ if (isset($_SESSION['user_id'])) {
                 </div>
 
                 <!-- Main Dashboard -->
-                <div class="admin-content-main">
-                    <div class="admin-content-main-title">
-                        <h1>Dashboard</h1>
-                    </div>
+                
                     <div class="admin-content-main-content">
-                        <h2>Thông tin nhân viên</h2>
+                        <h2>Thông tin cá nhân</h2>
                         <p><strong>Tên:</strong> <?php echo $employee_name ?? 'Chưa có tên'; ?></p>
                         <p><strong>Email:</strong> <?php echo $employee_email ?? 'Chưa có email'; ?></p>
                         <p><strong>Số điện thoại:</strong> <?php echo $employee_phone ?? 'Chưa có số điện thoại'; ?></p>
